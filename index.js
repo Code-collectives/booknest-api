@@ -1,5 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
+import authorRouter from "./routes/authors.js";
+import reviewRouter from "./routes/review.js";
 
 
 //connect to database
@@ -13,6 +15,11 @@ const app = express();
 
 //Use middlewares
 app.use(express.json());
+
+// Use Routes
+
+app.use(authorRouter);
+app.use(reviewRouter);
 
 //listening to port
 app.listen(3007, function() {
