@@ -11,6 +11,8 @@ authorRouter.get('/authors', getAuthor);
 
 authorRouter.post('/authors', addAuthor);
 
+authorRouter.get('/books', )
+
 // Export Router
 
 export default authorRouter;
