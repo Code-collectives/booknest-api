@@ -1,27 +1,20 @@
-import express from "express";
-import mongoose from "mongoose";
-import authorRouter from "./routes/authors.js";
-import reviewRouter from "./routes/review.js";
+// app.mjs
+import express from 'express';
+import mongoose from 'mongoose';
+import bookRoutes from './routes/books.js';
 
 
-//connect to database
-await mongoose.connect(process.env.MONGO_URI);
-
-
-
-
-//create express app
 const app = express();
-
-//Use middlewares
 app.use(express.json());
 
-// Use Routes
+// Connect to MongoDB
+await mongoose.connect(process.env.MONGO_URI);
 
-app.use(authorRouter);
-app.use(reviewRouter);
+// Use the book routes
+app.use( bookRoutes);
 
-//listening to port
-app.listen(3007, function() {
-    console.log('server is running on port 3007')
+// Start the server
+const port = 3007;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
