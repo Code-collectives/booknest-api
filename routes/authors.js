@@ -7,9 +7,9 @@ const authorRouter = Router();
 
 // Define Router 
 
-reviewAuthor.get('/author', getAuthor)
+authorRouter.get('/authors', getAuthor);
 
-reviewAuthor.post('/author', addAuthor)
+authorRouter.post('/authors', addAuthor);
 
 // Export Router
 

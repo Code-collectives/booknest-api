@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addOneReview, getAllReviews } from "../controllers/review";
+import { addOneReview, getAllReviews } from "../controllers/review.js";
 
 
 
