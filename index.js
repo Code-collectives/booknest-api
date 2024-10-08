@@ -2,6 +2,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bookRoutes from './routes/books.js';
+import reviewRouter from './routes/review.js';
+import authorRouter from './routes/authors.js';
 
 
 const app = express();
@@ -12,6 +14,8 @@ await mongoose.connect(process.env.MONGO_URI);
 
 // Use the book routes
 app.use( bookRoutes);
+app.use(reviewRouter);
+app.use(authorRouter);
 
 // Start the server
 const port = 3007;
