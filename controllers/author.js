@@ -15,9 +15,9 @@ export const getAuthors = async (req, res, next) => {
 export const getOneAuthor = async (req, res, next) => {
 
     try {
-        const author = await AuthorModel.find(req.body);
+        const oneAuthor = await AuthorModel.findById(req.params.id);
 
-        res.status(200).json(author);
+        res.status(200).json(oneAuthor);
     } catch (error) {
         next(error)
 
