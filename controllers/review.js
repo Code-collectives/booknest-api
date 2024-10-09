@@ -18,7 +18,7 @@ export const getOneReview = async (req, res, next) => {
     try {
       const oneReview =  await ReviewModel.findById(req.params.id);
     
-            res.status(201).json(oneReview);
+            res.status(200).json(oneReview);
     } catch (error) {
         next (error)
         
@@ -33,9 +33,12 @@ export const addReview = async (req, res, next) => {
 
     try {
 
-        await ReviewModel.create(req.body);
+        const review = await ReviewModel.create(req.body);
 
-        res.status(201).json('Review was posted!');
+        res.status(201).json({
+            message :'Rview was added!',
+            author : review
+        });
     } catch (error) {
         next(error);
 
@@ -48,9 +51,12 @@ export const updateOneReview = async (req, res, next) => {
 
     try {
 
-        await ReviewModel.findByIdAndUpdate(req.params.id, req.body, {new :true});
+       const updateReview = await ReviewModel.findByIdAndUpdate(req.params.id, req.body, {new :true});
 
-        res.status(200).json('Review was updated!');
+        res.status(200).json({
+            message :'Review was updated!',
+            author : updateReview
+        });
     } catch (error) {
         next(error);
 
