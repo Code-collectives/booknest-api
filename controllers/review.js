@@ -36,7 +36,7 @@ export const addReview = async (req, res, next) => {
         const review = await ReviewModel.create(req.body);
 
         res.status(201).json({
-            message :'Rview was added!',
+            message :'Review was added!',
             author : review
         });
     } catch (error) {
