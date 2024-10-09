@@ -6,7 +6,10 @@ import BookModel from "../models/books.js";
 export const addBook = async (req, res, next) => {
   const book = new BookModel(req.body);
   await book.save();
-  res.status(201).send('Book Added!'); // Send a 201 status for creation
+  res.status(201).send({
+    message: 'Book Added!',
+    book: book
+  }); // Send a 201 status for creation
 };
 
 // Get all books
@@ -20,7 +23,10 @@ export const updateBook = async (req, res, next) => {
   try {
     const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!book) return res.status(404).send('Book not found');
-    res.send(book); // Response for the updated book 
+    res.send({
+      message: 'Book was updated',
+      book:book
+    }); // Response for the updated book 
   } catch (error) {
     next(error); // Forward error to error handling middleware
   }
