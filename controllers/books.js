@@ -39,7 +39,7 @@ export const deleteBook = async (req, res, next) => {
 
 // Get book by ID
 export const getBookById = async (req, res, next) => {
-  try {
+  try { 
     const book = await BookModel.findById(req.params.id);
     if (!book) return res.status(404).send('Book not found'); // Check before sending a response
     res.send(book); // Send the found book
