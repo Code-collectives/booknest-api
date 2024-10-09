@@ -9,6 +9,12 @@ import authorRouter from './routes/authors.js';
 const app = express();
 app.use(express.json());
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  });
+  
 // Connect to MongoDB
 await mongoose.connect(process.env.MONGO_URI);
 
