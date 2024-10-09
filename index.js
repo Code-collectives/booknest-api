@@ -2,10 +2,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bookRoutes from './routes/books.js';
-import reviewRouter from './routes/review.js';
 import authorRouter from './routes/authors.js';
 import cors from 'cors';
 import userRoutes from './routes/user.js';
+import reviewRouter from './routes/review.js';
 
 
 
@@ -28,8 +28,10 @@ await mongoose.connect(process.env.MONGO_URI);
 
 // Use the book routes
 app.use( bookRoutes);
-app.use(reviewRouter);
 app.use(authorRouter);
+app.use(reviewRouter);
+
+
 
 // Start the server
 const port = 3007;
