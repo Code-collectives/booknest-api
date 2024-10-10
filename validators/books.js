@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const bookSchema = Joi.object ({
     title: Joi.string().required(true),
-  author: Joi.string().required(false),
+  author: Joi.string().required(true),
   genre: Joi.string().required().valid('Fiction', 'Non-Fiction', 'Science', 'Fantasy', 'Children book').required(),
   description : Joi.string().required(),
   publisher: Joi.string().required(),
