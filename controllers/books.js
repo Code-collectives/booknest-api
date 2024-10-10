@@ -1,14 +1,20 @@
 // controllers/bookController.mjs
 import BookModel from "../models/books.js";
+import { validateBook } from "../validators/books.js";
 
 
 // Add a new book
 export const addBook = async (req, res, next) => {
-  const book = new BookModel(req.body);
-  await book.save();
+
+  const {error} = validateBook(req.body);
+  if (error) return res.status(422).send('error')
+
+    const {title, author, genre, description, publisher, date } = req.body;
+  const  newBook = new BookModel( {title, author, genre, description, publisher, date});
+  await newBook.save();
   res.status(201).send({
     message: 'Book Added!',
-    book: book
+    // book: book
   }); // Send a 201 status for creation
 };
 
@@ -20,6 +26,9 @@ export const getAllBooks = async (req, res, next) => {
 
 // Update book
 export const updateBook = async (req, res, next) => {
+  const {error} = validateBook(req.body);
+  if (error) return res.status(422).send('error');
+
   try {
     const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!book) return res.status(404).send('Book not found');
@@ -28,7 +37,7 @@ export const updateBook = async (req, res, next) => {
       book:book
     }); // Response for the updated book 
   } catch (error) {
-    next(error); // Forward error to error handling middleware
+    res.status(500) .send('Error updating book');    
   }
 };
 
