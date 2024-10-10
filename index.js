@@ -3,11 +3,13 @@ import mongoose from 'mongoose';
 import bookRoutes from './routes/books.js';
 import authorRouter from './routes/authors.js';
 import reviewRouter from './routes/review.js';
+import userRoutes from './routes/user.js';
 import cors from 'cors';
 
 
 const app = express();
 app.use(express.json());
+app.use(userRoutes);
 app.use(cors());
 
 
