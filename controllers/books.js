@@ -9,8 +9,8 @@ export const addBook = async (req, res, next) => {
   const {error} = validateBook(req.body);
   if (error) return res.status(422).send('error')
 
-    const {title, author, genre, description, publisher, date } = req.body;
-  const  newBook = new BookModel( {title, author, genre, description, publisher, date});
+    const {title, author, genre, description, publisher, year, img_url } = req.body;
+  const  newBook = new BookModel( {title, author, genre, description, publisher, year, img_url});
   await newBook.save();
   res.status(201).send({
     message: 'Book Added!',
