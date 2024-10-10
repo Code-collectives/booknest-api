@@ -9,6 +9,27 @@ export const registerUser = async (req, res) => {
   res.send('User registered');
 };
 
+// Get user by ID
+export const getUserById = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+    if (!user) return res.status(404).send('User not found');
+    res.send(user);
+  } catch (error) {
+    res.status(500).send('Error retrieving user');
+  }
+};
+
+// Get all users
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.send(users);
+  } catch (error) {
+    res.status(500).send('Error retrieving users');
+  }
+};
+
 // Login user
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;

@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
 // Connect to MongoDB
 await mongoose.connect(process.env.MONGO_URI);
 
-// Use the book routes
+// Use the routes
 app.use( bookRoutes);
 app.use( authorRouter);
 app.use( reviewRouter);
