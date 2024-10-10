@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 const bookSchema = new mongoose.Schema({
   title: String,
   author: String,
-  subjectKeyWord : String,
   genre: String,
   description : String,
   publisher: String,
