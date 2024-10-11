@@ -52,9 +52,3 @@ export const loginUser = async (req, res) => {
   res.send('User logged in successfully');
 };
 
-// Delete user by ID
-export const deleteUser = async (req, res) => {
-  const user = await UserModel.findByIdAndDelete(req.params.id);
-  if (!user) return res.status(404).send('User not found');
-  res.send('User deleted');
-};
