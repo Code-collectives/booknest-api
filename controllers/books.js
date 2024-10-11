@@ -20,7 +20,7 @@ export const addBook = async (req, res, next) => {
 
 // Get all books
 export const getAllBooks = async (req, res, next) => {
-  const books = await BookModel.find();
+  const books = await BookModel.find().populate('Author');
   res.send(books);
 };
 
